@@ -15,9 +15,13 @@ pipeline {
         //script {
         //  kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
        // }
-       withKubeCredentials(kubectlCredentials: [[ credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
-      sh 'kubectl apply -f nginx.yml'
+       //withKubeCredentials(kubectlCredentials: [[ credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
+      //sh ' kubectl apply -f nginx.yml '
     // some block
+     withKubeConfig(credentialsId: 'K8s-test-cluster') {
+     sh 'kubectl apply -f nginx.yml'
+    // some block
+    }
       }
       }
     }
