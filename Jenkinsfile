@@ -12,9 +12,13 @@ pipeline {
 
    stage('Deploy App') {
       steps {
-        script {
-          kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "K8s-test",enableConfigSubstitution: true)
-        }
+        //script {
+        //  kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
+       // }
+       withKubeCredentials(kubectlCredentials: [[clusterName: 'elk-master', credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
+       kubectl apply -f nginx.yml
+    // some block
+      }
       }
     }
     
