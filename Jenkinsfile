@@ -10,15 +10,15 @@ pipeline {
       }
     }
 
-   /* stage('Deploy App') {
+   stage('Deploy App') {
       steps {
         script {
           kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    */
-    stage("SSH Into k8s Server") {
+    
+   /* stage("SSH Into k8s Server") {
       steps{
         def remote = [:]
         remote.name = 'elk-master'
@@ -35,7 +35,7 @@ pipeline {
           sshCommand remote: remote, command: "kubectl apply -f nginx.yml"
         }
       }
-    }
+    }*/
     
   }
   
