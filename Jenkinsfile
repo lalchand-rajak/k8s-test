@@ -16,7 +16,7 @@ pipeline {
         //  kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
        // }
        withKubeCredentials(kubectlCredentials: [[ credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
-      sh ' kubectl apply -f nginx.yml '
+      sh 'kubectl apply -f nginx.yml'
     // some block
       }
       }
