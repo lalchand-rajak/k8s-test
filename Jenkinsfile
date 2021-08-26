@@ -19,6 +19,7 @@ pipeline {
     }
     */
     stage("SSH Into k8s Server") {
+      steps{
         def remote = [:]
         remote.name = 'elk-master'
         remote.host = '10.210.0.133'
@@ -33,10 +34,10 @@ pipeline {
         stage('Deploy spring boot') {
           sshCommand remote: remote, command: "kubectl apply -f nginx.yml"
         }
+      }
     }
     
   }
-
   
 }
 
