@@ -13,7 +13,7 @@ pipeline {
   
     stage('Deploy Kubernetes ') {
       steps{
-     withKubeConfig([credentialsId: 'K8s-test-cluster', serverUrl: 'https://10.210.0.133:6443']) {
+     kubeconfig(credentialsId: 'test', serverUrl: 'https://10.210.0.133:6443']) {
       sh 'kubectl apply -f nginx.yml'
         }
       }
