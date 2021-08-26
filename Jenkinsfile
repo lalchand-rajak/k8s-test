@@ -11,13 +11,32 @@ pipeline {
     }
     
   
-    stage('Deploy Kubernetes ') {
+    /*stage('Deploy Kubernetes ') {
       steps{
      withKubeConfig(credentialsId: 'test', serverUrl: 'https://10.210.0.133:6443') {
-     sh 'kubectl get pod'
+      sh 'kubectl apply -f nginx.yml'
+        }
+      }
+    }*/
+
+    stage("Deploye into k8s"){
+      agent {
+        kubernetes {
+      	  cloud 'kubernetes'
+      	//defaultContainer 'jnlp'
+      }
+
+      stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "K8s-test")
+         }
+    
         }
       }
     }
+
+    
   
    /*stage('Deploy App') {
       steps {
