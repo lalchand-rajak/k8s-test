@@ -6,7 +6,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git url:'https://github.com/lalchand-rajak/k8s-test.git'
+        git url:'https://github.com/lalchand-rajak/k8s-test.git', branch:'main'
       }
     }
 
