@@ -9,21 +9,28 @@ pipeline {
         git url:'https://github.com/lalchand-rajak/k8s-test.git', branch:'main'
       }
     }
-
-   stage('Deploy App') {
+    
+  node {
+    stage('Deploy Kubernetes ') {
+     withKubeConfig([credentialsId: 'K8s-test-cluster', serverUrl: 'https://10.210.0.133:6443']) {
+      sh 'kubectl apply -f nginx.yml'
+      }
+    }
+  }
+   /*stage('Deploy App') {
       steps {
         //script {
         //  kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
-       // }
-       //withKubeCredentials(kubectlCredentials: [[ credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
-      //sh ' kubectl apply -f nginx.yml '
-    // some block
+        // }
+        //withKubeCredentials(kubectlCredentials: [[ credentialsId: 'K8s-test-cluster', namespace: 'test']]) {
+        //sh ' kubectl apply -f nginx.yml '
+        // some block
      withKubeConfig(credentialsId: 'K8s-test-cluster',serverUrl: 'https://10.210.0.133:6443') {
      sh 'kubectl apply -f nginx.yml'
-    // some block
+        // some block
     }
       }
-    }
+    }*/
     
     
    /* stage("SSH Into k8s Server") {
