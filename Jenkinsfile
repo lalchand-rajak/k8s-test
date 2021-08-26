@@ -6,7 +6,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git url:'https://github.com/justmeandopensource/playjenkins.git'
+        git url:'https://github.com/lalchand-rajak/k8s-test.git'
       }
     }
 
