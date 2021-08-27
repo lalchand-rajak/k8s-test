@@ -14,8 +14,10 @@ pipeline {
   
     stage('Deploy Kubernetes ') {
       steps{
-      sshagent(['K8s-test-cluster-1']) {
-         sh ' kubectl apply -f nginx.yml '
+      withKubeCredentials(kubectlCredentials: [[ credentialsId: 'test', serverUrl: 'https://10.210.0.133:6443']]) {
+    // some block
+    sh ' kubectl apply -f nginx.yml '
+            }
     
           }
      
