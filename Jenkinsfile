@@ -19,15 +19,19 @@ pipeline {
     //sh ' kubectl apply -f nginx.yml '
      // kubernetesDeploy(configs: "nginx.yaml",kubeconfigId: "K8s-test")
             }*/
-        sshagent(['K8s-test-cluster-1']) {
-    // some block
-          script{
-              def runCmd = "kubectl apply -f nginx.yml"
-              sh 'ssh -o StrictHostKeyChecking=no root@10.210.0.133 ${runCmd} '
+        sshagent(['k8s-deploy']) {
+              sh "scp -o StrictHostKeyChecking=no nginx.yml root@10.210.0.133:/home"
+              script{
+                  try{
+                    sh "ssh root@10.210.0.133 kubectl apply -f ."
+                  }catch(error){
+                    sh " ssh root@10.210.0.133  kubectl create -f ."
+                  }
+              }
+            }
+              
           }
         } 
       }
      
     }
-  }
-}
