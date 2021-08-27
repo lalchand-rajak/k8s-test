@@ -22,9 +22,10 @@ pipeline {
         sshagent(['K8s-test-cluster-1']) {
     // some block
           script{
-            sh ' kubectl apply -f nginx.yml '
+              def runCmd = "kubectl apply -f nginx.yml"
+              sh 'ssh -o StrictHostKeyChecking=no root@10.210.0.133 ${runCmd} '
           }
-        }
+        } 
       }
      
     }
