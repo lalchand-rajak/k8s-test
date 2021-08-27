@@ -21,8 +21,10 @@ pipeline {
             }*/
         sshagent(['K8s-test-cluster-1']) {
     // some block
+          script{
             sh ' kubectl apply -f nginx.yml '
           }
+        }
       }
      
     }
