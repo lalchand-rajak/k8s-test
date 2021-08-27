@@ -16,7 +16,8 @@ pipeline {
       steps{
       withKubeCredentials(kubectlCredentials: [[ credentialsId: 'test', serverUrl: 'https://10.210.0.133:6443']]) {
     // some block
-    sh ' kubectl apply -f nginx.yml '
+    //sh ' kubectl apply -f nginx.yml '
+      kubernetesDeploy(configs: "nginx.yaml")
             }
     
           }
