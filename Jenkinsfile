@@ -20,6 +20,7 @@ pipeline {
      // kubernetesDeploy(configs: "nginx.yaml",kubeconfigId: "K8s-test")
             }*/
         sshagent(['k8s-deploy']) {
+               sh ''' ssh root@10.210.0.133 '''
                sh "scp -o StrictHostKeyChecking=no nginx.yaml root@10.210.0.133:/root"
               script{
                   try{
