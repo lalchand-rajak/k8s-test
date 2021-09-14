@@ -22,8 +22,16 @@ pipeline {
         }
     }
 
-    cleanWs()
-    
+    post {
+        success{} 
+        unstable{} 
+        aborted{}
+        failure{}               
+  always {
+      cleanWs()
+        }
+
+            }
 
     }
               
