@@ -22,8 +22,8 @@ kubernetesDeploy configs: 'config', enableConfigSubstitution: false, kubeConfig:
             }
               
         }
-    }
-} 
+}
+
 
      
     
