@@ -20,15 +20,20 @@ pipeline {
         steps{          
            sh 'kubectl apply -f nginx.yaml'
         }
+    post { 
+        always { 
+            cleanWs()
+            }
+        }
     }
 
     post { 
         always { 
             cleanWs()
+            }
         }
-    }
 
-        }
+    }
 
 }  
     
