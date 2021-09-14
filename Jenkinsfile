@@ -16,9 +16,12 @@ pipeline {
   
     stage('Deploy Kubernetes ') {
       steps{
-        withCredentials([file(credentialsId: 'k8s-test_cluster', variable: 'KUBECONFIG')]) {
+        withCredentials([kubeconfigFile(credentialsId: 'test-cluster', variable: 'KUBECONFIG')]) {
+            // some block
             sh 'kubectl apply -f nginx.yaml'
-                }
+        }
+            
+                
               
             }
               
