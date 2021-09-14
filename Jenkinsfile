@@ -23,15 +23,15 @@ pipeline {
     }
 
     post {
-        success{} 
-        unstable{} 
-        aborted{}
-        failure{}               
-  always {
-      cleanWs()
-        }
+        success{echo " Job was successfull"} 
+        unstable{echo " Job was unstable"} 
+        aborted{echo " Job was aborted"}
+        failure{echo " Job was failure"}               
+        always {
+        cleanWs()
+               }
 
-            }
+        }
 
     }
               
