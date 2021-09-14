@@ -21,10 +21,13 @@ pipeline {
            sh 'kubectl apply -f nginx.yaml'
         }
     }
+
+    post{
+        always {
+      cleanWs()
+    }
+
+    }
               
    }
 }
-
-
-     
-    
